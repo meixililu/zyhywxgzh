@@ -1,0 +1,23 @@
+server:
+  port: 18081
+
+wx:
+  mp:
+    configs:
+    - appId: wxe4faa8e49af11911
+      secret: 5e279141ad02697b1da5482d83789e3fx
+      token: wechatchtoen
+      aesKey: lJA28KajyqneUAzmXsG9MOf03jnEZHo7LGQNPv665vf
+#    - appId: wx418fe69af321e06f
+#      secret: 1b72a758f0e7d8de64b5e26d313410d1
+#      token: xbkjwxzyhy
+#      aesKey: MFcue0pYHjBbjp6KxgivaGbuWG8KXKULSHfEVCCSlnc
+
+
+ok:
+  http:
+    connectTimeout: 30
+    readTimeout: 30
+    writeTimeout: 30
+    maxIdleConnections: 200
+    keepAliveDuration: 300
