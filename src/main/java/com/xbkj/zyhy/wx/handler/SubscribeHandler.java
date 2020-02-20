@@ -50,7 +50,9 @@ public class SubscribeHandler extends AbstractHandler {
         }
 
         try {
-            return new TextBuilder().build("感谢关注", wxMessage, weixinService);
+            return new TextBuilder().build("感谢关注，发送中文或英文可以直接翻译查词，" +
+                    "发送微信语音可以直接翻译，只支持普通话，" +
+                    "发送图片会返回图片文字识别结果，确认无误之后，再复制发送即可翻译。", wxMessage, weixinService);
         } catch (Exception e) {
             this.logger.error(e.getMessage(), e);
         }
