@@ -169,12 +169,12 @@ public class MyOkHttpClient {
     }
 
     public String execute(Request request) {
+        System.out.println("result:"+request.url());
         Response response = null;
         try {
             response = okHttpClient.newCall(request).execute();
             if (response.isSuccessful()) {
                 String result = response.body().string();
-                log.info("result:"+result);
                 return result;
             }
         } catch (Exception e) {

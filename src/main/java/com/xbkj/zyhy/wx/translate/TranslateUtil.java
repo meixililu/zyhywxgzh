@@ -16,10 +16,9 @@ import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -28,12 +27,16 @@ public class TranslateUtil {
 
     public static final String Header = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36";
 
+
     private MyOkHttpClient okHttpCli;
 //    http://wxgzh.mzxbkj.com/wx/portal/wxe4faa8e49af11911
 //    http://wechat.xxmoviexx.com/
 
     public String postIcibaNew(String question) {
         //zh  en  ja  ko  fr  de  es
+        String timestamp = "12345678902";
+        String platform = "wechat";
+        String network = "wifi";
         String from = "";
         String to = "";
         if (StringUtils.isEnglish(question)) {
@@ -43,17 +46,16 @@ public class TranslateUtil {
             from = "zh";
             to = "en";
         }
-        log.info("from:"+from+"--to:"+to+"--question:"+question);
-        FormBody formBody = new FormBody.Builder()
-                .add("w", question)
-                .add("", "")
-                .add("f", from)
-                .add("t", to)
-                .build();
+        String sign = getMd5Sign(PVideoKey, timestamp, question,
+                platform, network, from, to);
+        System.out.println("sign:"+sign+"--from:"+from+"--to:"+to+"--question:"+question);
+        String url = Setings.IcibaTranslateNewUrl + "q=" + question + "&network=" + network +
+                "&platform=" + platform + "&sign=" + sign + "&type=" + "0" + "&fr=" + from +
+                "&to=" + to + "&timestamp=" + timestamp;
+        System.out.println("url:"+url);
         Request request = new Request.Builder()
-                .url(Setings.IcibaTranslateNewUrl)
+                .url(url)
                 .header("User-Agent", Header)
-                .post(formBody)
                 .build();
         return okHttpCli.execute(request);
     }
@@ -144,6 +146,24 @@ public class TranslateUtil {
         return result;
     }
 
+    public static String getMd5Sign(String key, String... strs){
+        String tempStr = "";
+        String sign = "";
+        List<String> list = new ArrayList<>();
+        for(String item : strs){
+            list.add(item);
+        }
+        Collections.sort(list);
+        for(String item : list){
+            tempStr = tempStr + key + item;
+        }
+        sign = MD5.encode(tempStr);
+        return sign;
+    }
 
+
+
+
+    public static final String PVideoKey = "sfjsdlf342ds4rbmd24fsvh5fg56d";
 
 }

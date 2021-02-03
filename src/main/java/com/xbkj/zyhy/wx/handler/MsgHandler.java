@@ -12,6 +12,7 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.apache.http.util.TextUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -57,9 +58,17 @@ public class MsgHandler extends AbstractHandler {
     }
 
     public String translate(String q){
+        String tResult = q;
         System.out.println("translate:"+q);
         String result = mTranslateUtil.postIcibaNew(q);
-        String tResult = TranParser.tran_js_newapi(result);
+        try {
+            TranResultRoot mIciba = JSON.parseObject(result, TranResultRoot.class);
+            if(mIciba != null && mIciba.getResult() != null){
+                tResult = mIciba.getResult().getResult();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("translate-result:"+result);
         return tResult;
     }

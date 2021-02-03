@@ -48,6 +48,8 @@ public class TranParser {
         return resutlStr;
     }
 
+
+
     public static boolean isJson(String value) {
         try {
             if (TextUtils.isEmpty(value)) {

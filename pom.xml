@@ -43,9 +43,14 @@
 			<version>1.2.61</version>
 		</dependency>
 		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		<dependency>
 			<groupId>com.github.binarywang</groupId>
 			<artifactId>wx-java-mp-spring-boot-starter</artifactId>
-			<version>3.6.0</version>
+			<version>4.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
