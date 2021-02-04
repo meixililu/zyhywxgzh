@@ -48,11 +48,11 @@ public class TranslateUtil {
         }
         String sign = getMd5Sign(PVideoKey, timestamp, question,
                 platform, network, from, to);
-        System.out.println("sign:"+sign+"--from:"+from+"--to:"+to+"--question:"+question);
+//        System.out.println("sign:"+sign+"--from:"+from+"--to:"+to+"--question:"+question);
         String url = Setings.IcibaTranslateNewUrl + "q=" + question + "&network=" + network +
                 "&platform=" + platform + "&sign=" + sign + "&type=" + "0" + "&fr=" + from +
                 "&to=" + to + "&timestamp=" + timestamp;
-        System.out.println("url:"+url);
+//        System.out.println("url:"+url);
         Request request = new Request.Builder()
                 .url(url)
                 .header("User-Agent", Header)

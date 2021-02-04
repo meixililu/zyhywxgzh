@@ -19,11 +19,11 @@ class WxzyhyApplicationTests {
 
 	@Test
 	void contextLoads() {
-		TranslateUtil mTranslateUtil = new TranslateUtil(new MyOkHttpClient(new OkHttpClient()));
-		String result = mTranslateUtil.postIcibaNew("你好");
-		TranResultRoot mIciba = JSON.parseObject(result, TranResultRoot.class);
-		System.out.println("translate:"+result);
-		System.out.println("translate:"+mIciba.getResult().getResult());
+//		TranslateUtil mTranslateUtil = new TranslateUtil(new MyOkHttpClient(new OkHttpClient()));
+//		String result = mTranslateUtil.postIcibaNew("你好");
+//		TranResultRoot mIciba = JSON.parseObject(result, TranResultRoot.class);
+//		System.out.println("translate:"+result);
+//		System.out.println("translate:"+mIciba.getResult().getResult());
 	}
 
 }
